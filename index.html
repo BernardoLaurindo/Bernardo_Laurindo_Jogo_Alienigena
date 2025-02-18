@@ -68,9 +68,7 @@
             meteoro = criarMeteoro(this, larguraJogo / 4, alturaJogo / 2);
             meteoro2 = criarMeteoro(this, larguraJogo / 1.3, alturaJogo / 2);
 
-            // Adiciona colisão entre alien e meteoros
-            this.physics.add.collider(alien, meteoro);
-            this.physics.add.collider(alien, meteoro2);
+
 
             // Adiciona uma moeda ao jogo
             moeda = this.physics.add.sprite(larguraJogo / 2, 0, 'moeda')
@@ -84,6 +82,12 @@
             this.physics.add.overlap(alien, moeda, coletarMoeda, null, this);
             this.physics.add.collider(moeda, meteoro);
             this.physics.add.collider(moeda, meteoro2);
+
+            //usando lista para colisao do alien com os meteoros
+            colisoes = [meteoro, meteoro2]
+            for (var i = 0; i < colisoes.length; i++) {
+                this.physics.add.collider(alien, colisoes[i]);
+            }
         }
 
         // Função chamada a cada frame para atualizar o jogo
